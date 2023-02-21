@@ -1,0 +1,30 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+  SOURCE_DIR="tests"
+else
+  SOURCE_DIR="$1"
+fi
+
+BACKUP_DIR="${SOURCE_DIR}_backup"
+BYTECODE_DIR="${SOURCE_DIR}/__pycache__"
+
+# Create backup directory if it does not exist
+if [ ! -d "$BACKUP_DIR" ]; then
+  mkdir "$BACKUP_DIR"
+fi
+
+# Compile all python scripts in source directory
+find "$SOURCE_DIR" -name "*.py" -exec python -m py_compile {} \;
+
+# Copy all python scripts to backup directory
+mv "${SOURCE_DIR}"/*.py "$BACKUP_DIR"
+rm -r "$BACKUP_DIR"
+
+# Copy all compiled bytecode scripts to source directory
+find "$SOURCE_DIR" -name "*.pyc" -exec cp {} "${SOURCE_DIR}" \;
+rm -r "$BYTECODE_DIR"
+
+# Rename compiled bytecode scripts using regular expression
+./rename.py "$SOURCE_DIR"
+

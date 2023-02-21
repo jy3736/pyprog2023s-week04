@@ -10,7 +10,7 @@ import random
 script_name = sys.argv[0] 
 base_name = os.path.basename(script_name)
 lab_name = os.path.splitext(base_name)[0].split("_")[-1]
-lab_dir = '../src/' + lab_name
+lab_dir = '../../src/' + lab_name
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), lab_dir)))
 from main import main
