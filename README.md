@@ -1,4 +1,4 @@
-## Python programming assignment submission instructions.
+## Python programming assignment submission instructions
 
 - To ensure a fair evaluation, please do not modify any files or directories outside the `"src"` directory. All of your code should be placed inside the `"src"` directory.
 
